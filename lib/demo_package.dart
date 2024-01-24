@@ -21,6 +21,7 @@ class AppScaffold extends StatefulWidget {
   final Color? bgColor;
   final Color? loaderColor;
   final Widget? floatingActionButton;
+  final FloatingActionButtonLocation? floatingActionButtonLocation;
   final List<KeyboardActionsItem>? keyboardActions;
 
   const AppScaffold({
@@ -29,6 +30,7 @@ class AppScaffold extends StatefulWidget {
     this.appbar,
     this.isLoading,
     this.isShowDrawer,
+    this.floatingActionButtonLocation,
     this.bottomNavigation,
     this.bottomSafeAreaColor,
     this.systemNavigationBarColor,
@@ -65,9 +67,9 @@ class _AppScaffoldState extends State<AppScaffold> {
                 statusBarIconBrightness: Brightness.light,
                 statusBarBrightness: Brightness.light,
                 systemNavigationBarColor:
-                widget.systemNavigationBarColor ?? Colors.amber),
+                widget.systemNavigationBarColor ?? Colors.white),
             child: Scaffold(
-              floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+              floatingActionButtonLocation:widget.floatingActionButtonLocation?? FloatingActionButtonLocation.centerDocked,
               floatingActionButton: widget.floatingActionButton,
               key: _scaffoldKey,
               appBar: widget.appbar?? AppBar(title: const Text("Demo Packages is inherited"),),
