@@ -1,7 +1,6 @@
 // ignore_for_file: constant_identifier_names
 library custom_utils;
 import 'dart:io';
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'app_navigation_helper.dart';
@@ -73,11 +72,13 @@ class AppUtils {
 
 
   static Future<bool> _requestPermission(Permission? permission) async {
-    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    final systemVersion = Platform.operatingSystemVersion;
+    int deviceVersion = int.parse(systemVersion.split(' ')[1]);
+   // DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     if (Platform.isAndroid) {
       late PermissionStatus status;
-      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-      if (androidInfo.version.sdkInt > 32) {
+     // AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      if (deviceVersion > 12) {
         status = await Permission.mediaLibrary.status;
         bool photos = await Permission.photos.isGranted;
         bool video = await Permission.mediaLibrary.isGranted;
@@ -132,10 +133,12 @@ class AppUtils {
   }
   static Future<bool> checkStoragePermissions() async {
     PermissionStatus? permissionStatus;
-    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    final systemVersion = Platform.operatingSystemVersion;
+    int deviceVersion = int.parse(systemVersion.split(' ')[1]);
+   // DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+   // AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
     if (Platform.isAndroid) {
-      if (androidInfo.version.sdkInt > 32) {
+      if (deviceVersion > 12) {
         permissionStatus = await Permission.photos.request();
 
       } else {
@@ -156,7 +159,9 @@ class AppUtils {
   }
 
   static Future<PermissionStatus?> askPermission() async {
-    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    //DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    final systemVersion = Platform.operatingSystemVersion;
+    int deviceVersion = int.parse(systemVersion.split(' ')[1]);
     if (Platform.isIOS) {
       var photosStatus = await Permission.storage.request();
 
@@ -167,8 +172,8 @@ class AppUtils {
       }
     } else {
       if (await Permission.storage.status.isDenied) {
-        AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-        if (androidInfo.version.sdkInt > 32) {
+      //  AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+        if (deviceVersion > 12) {
           var storage = await Permission.mediaLibrary.request();
           var photo = await Permission.photos.request();
           var video = await Permission.videos.request();
