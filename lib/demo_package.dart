@@ -7,7 +7,7 @@ import 'App_loading_indicator.dart';
 class AppScaffold extends StatefulWidget {
   final Widget body;
   final Widget? bottomNavigation;
-  final AppBar? appbar;
+  final PreferredSizeWidget? appBar;
   final bool? isLoading;
   final bool? isShowDrawer;
   final Color? bottomSafeAreaColor;
@@ -27,7 +27,7 @@ class AppScaffold extends StatefulWidget {
   const AppScaffold({
     Key? key,
     required this.body,
-    this.appbar,
+    this.appBar,
     this.isLoading,
     this.isShowDrawer,
     this.floatingActionButtonLocation,
@@ -56,7 +56,7 @@ class _AppScaffoldState extends State<AppScaffold> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: widget.bottomSafeAreaColor ?? Colors.amber,
+      color: widget.bottomSafeAreaColor ?? Colors.white,
       child: SafeArea(
         top: false,
         bottom: true,
@@ -72,7 +72,7 @@ class _AppScaffoldState extends State<AppScaffold> {
               floatingActionButtonLocation:widget.floatingActionButtonLocation?? FloatingActionButtonLocation.centerDocked,
               floatingActionButton: widget.floatingActionButton,
               key: _scaffoldKey,
-              appBar: widget.appbar?? AppBar(title: const Text("Demo Packages is inherited"),),
+              appBar: widget.appBar?? AppBar(title: const Text("Demo Packages is inherited"),),
               // resizeToAvoidBottomInset: false,
               onDrawerChanged: (isChanged) {
                 setState(() {});
