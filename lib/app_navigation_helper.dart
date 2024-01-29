@@ -1,3 +1,4 @@
+library app_navigation_helper;
 import 'package:flutter/material.dart';
 
 GlobalKey<NavigatorState> navKey = GlobalKey<NavigatorState>();
