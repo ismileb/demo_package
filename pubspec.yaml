@@ -11,6 +11,10 @@ dependencies:
   flutter:
     sdk: flutter
   keyboard_actions:
+  flutter_svg: ^2.0.9
+  cached_network_image: ^3.3.1
+  device_info_plus: ^9.1.1
+  permission_handler: ^11.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
